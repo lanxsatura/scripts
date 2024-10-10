@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-#Author:  Rémi Chauvin
+#Author:  Rémi C <lanxsatura>. MIT License.
+
 #Purpose: configure `~/.lftprc` for automatic TLS connections
 #         towards FTPES (explicit SSL/TLS) servers
 #         using a self-signed certificate
