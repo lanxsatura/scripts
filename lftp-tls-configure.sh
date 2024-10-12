@@ -29,6 +29,7 @@ LIST=(
         'set ftp:ssl-protect-fxp yes'
         'set ssl:verify-certificate no'
         'set ftps:initial-prot P'
+        'set net:timeout 10'
     )
 
 #verify the presence of each option in ~/.lftprc
