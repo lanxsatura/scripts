@@ -47,7 +47,7 @@ validate_tls_conf () {
 confirm_conn () {
     read -n1 -p "Connect now [y/n]? " ANS
     case ${ANS} in
-        y|Y)     echo -e "\n" && lftp -p ${PORT} ${IP};;
+        y|Y)    echo -e "\n" && lftp -p ${PORT} ${IP};;
         *)      echo -e "\n\nConnect later with ->\tlftp -p ${PORT} ${IP}" && exit 0;;
     esac
 }
@@ -59,8 +59,8 @@ compare_cert () {
         if ! [[ $(openssl x509 -noout -modulus -in ${CERT} | openssl md5) == $(openssl x509 -noout -modulus -in ${CERT}.new | openssl md5) ]]; then
             diff -u ${CERT}.info ${CERT}.info.new
             echo -e "\nWARNING: Cert has changed! (Check diff above)\n"
-            read -n 1 -p "Accept new cert [y/n] ? " ANS
-            case $ANS in
+            read -n1 -p "Accept new cert [y/n] ? " ANS
+            case ${ANS} in
                 y|Y)    mv ${CERT}.new ${CERT} && mv ${CERT}.info.new ${CERT}.info;;
                 *)      rm ${CERT}.new ${CERT}.info.new && echo -e "\nCanceled. Exit" && exit 0;;
             esac
