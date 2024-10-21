@@ -2,9 +2,9 @@
 
 Collection of scripts and tutorials/notes for personal use.
 
+____________________
 
-
-All the files under this repository are under the MIT license.
+All the files in this repository are under the **MIT license**.
 
 Copyright (c) <2024> <Rémi C (https://github.com/lanxsatura)>
 
