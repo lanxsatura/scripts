@@ -10,8 +10,8 @@
 
 
 # globals
-CERT_NAME="vsftpd.pem"
-KEY_NAME="${CERT_NAME}.key"
+CERT_NAME="vsftpd"
+KEY_NAME=${CERT_NAME}
 CERT_PATH="/etc/ssl/certs"
 KEY_PATH="/etc/ssl/private"
 CURRENT_TIME=$(date +"%F %R:%S")
@@ -36,12 +36,12 @@ case ${ANS} in
     y|Y) [ -d ${CERT_PATH} ] || echo -e "WARNING: Missing folder ${CERT_PATH} && exit 1"
          [ -d ${KEY_PATH} ] || echo -e "WARNING: Missing folder ${KEY_PATH} && exit 1"
          sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
-             -keyout ${KEY_PATH}/${KEY_NAME} \
-             -out ${CERT_PATH}/${CERT_NAME}
-         sudo chmod 644 ${CERT_PATH}/${CERT_NAME}
-         sudo chmod 600 ${KEY_PATH}/${KEY_NAME}
+             -keyout ${KEY_PATH}/${KEY_NAME}.key \
+             -out ${CERT_PATH}/${CERT_NAME}.pem
+         sudo chmod 644 ${CERT_PATH}/${CERT_NAME}.pem
+         sudo chmod 600 ${KEY_PATH}/${KEY_NAME}.key
          echo -e "\nCertificate created successfully"
-         echo -e "\tCert:\t${CERT_PATH}/${CERT_NAME}\n\tKey:\t${KEY_PATH}/${KEY_NAME}"
+         echo -e "\tCert:\t${CERT_PATH}/${CERT_NAME}.pem\n\tKey:\t${KEY_PATH}/${KEY_NAME}.key"
          echo -e "\nCheck vsftpd.conf for matching paths";;
     *)   echo -e "\nCanceled"
          exit 1;;
