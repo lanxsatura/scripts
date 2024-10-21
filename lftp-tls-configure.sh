@@ -7,7 +7,7 @@
 
 
 #check if lftp is installed
-$(which lftp) >/dev/null 2>&1 || echo "lftp is not installed" && exit 1
+[ -x "$(command -v lftp)" ] || { echo "lftp is not installed" && exit 1; }
 
 #check if ~/.lftp/certs folder is present
 [ -d ~/.lftp/certs ] || mkdir -p ~/.lftp/certs
