@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-#
-# Author:  Rémi Chauvin
+
+# Author:  Rémi C <lanxsatura>. MIT License.
+
 # Purpose: lftp wrapper for FTPES (explicit SSL/TLS)
 #          * automatic download of self-signed certificate
 #          * automatic setup of ~/.lftprc with recommended options
@@ -11,6 +12,8 @@
 #       set ssl:verify-certificate yes
 #       set ssl:ca-file "/etc/ssl/certs/ca-certificates.crt"
 
+# NOTE: in order to avoid leaking the ftp username to bash_history/zsh_history, this script doesn't take arguments.
+#       if a user account is required, just specify `user <user>` inside lftp prompt.
 
 USRID="$(whoami)"
 LFTPRC="/home/${USRID}/.lftprc"
@@ -47,7 +50,6 @@ confirm_conn () {
     read -n 1 -p "Connect now [y/n]? " ANS
     case $ANS in
         y|Y)     echo -e "\n" && lftp -p ${PORT} ${IP};;
-        #NOTE: to avoid leak of ftp username in bash history, specify `user <user>` inside lftp prompt
         *)      echo -e "\n\nConnect later with ->\tlftp -p ${PORT} ${IP}" && exit 0;;
     esac
 }
